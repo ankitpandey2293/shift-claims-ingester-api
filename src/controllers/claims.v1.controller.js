@@ -18,14 +18,18 @@ class ClaimsControllerV1 {
          * [2] If not in global cache store , request for enrichment with ACK.
          * [3] Respond with 200 OK data or 400 as per enrichment request
          */
-        let claim = await this.globalCache.getClaim(orgID, uniqueID)
-        if (!claim) {
-            claim = await this.enricherAdapter.enrichClaim(orgID, uniqueID);
-        }
-        if (!claim) {
-            return res.status(FormattedResponse.ClaimNotFound.code).send(ResponseHelper.error(FormattedResponse.ClaimNotFound.message, FormattedResponse.ClaimNotFound.code));
-        } else {
-            return res.send(ResponseHelper.success(claim, 'OK', 200));
+        try {
+            let claim = await this.globalCache.getClaim(orgID, uniqueID)
+            if (!claim) {
+                claim = await this.enricherAdapter.enrichClaim(orgID, uniqueID);
+            }
+            if (!claim) {
+                return res.status(FormattedResponse.ClaimNotFound.code).send(ResponseHelper.error(FormattedResponse.ClaimNotFound.message, FormattedResponse.ClaimNotFound.code));
+            } else {
+                return res.send(ResponseHelper.success(claim, 'OK', 200));
+            }
+        } catch (exception) {
+            return res.status(FormattedResponse.ServiceNotAvailable.code).send(ResponseHelper.error(FormattedResponse.ServiceNotAvailable.message, FormattedResponse.ServiceNotAvailable.code));
         }
     }
 

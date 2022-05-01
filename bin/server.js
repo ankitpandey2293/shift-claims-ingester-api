@@ -6,6 +6,7 @@
 
 const app = require('../src/app');
 const debug = require('debug')('shift-claims-ingester-api:server');
+const { ResponseHelper } = require('../src/helpers');
 const http = require('http');
 
 /**
@@ -15,6 +16,26 @@ const http = require('http');
 const port = normalizePort(process.env.PORT || 3000);
 app.set('port', port);
 
+/**
+ * Configure Swagger
+ */
+
+const swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('../swagger/swagger.json');
+
+app.use(
+    '/documentation',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDocument)
+);
+
+app.use((req, res, next) => {
+    res.status(404).send(ResponseHelper.error("Requested resource not available", 404));
+});
+
+app.use((err, req, res) => {
+    res.status(err.status || 500).send(ResponseHelper.error(err.message || "Some error occurred while uploading document.", err.status));
+});
 /**
  * Create HTTP server.
  */

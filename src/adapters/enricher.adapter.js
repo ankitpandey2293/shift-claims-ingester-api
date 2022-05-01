@@ -47,7 +47,7 @@ class EnricherAdapter {
     enrichClaim = async (orgID, uniqueID) => {
         return new Promise((resolve, reject) => {
             this.client.enrichClaim({ orgID, uniqueID }, (error, claim) => {
-                if (error) reject(error)
+                if (error) reject(new Error('Enrichment Not Available'))
                 resolve(claim)
             })
         })

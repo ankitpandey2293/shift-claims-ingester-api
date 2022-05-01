@@ -1,0 +1,169 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "",
+        "version": "1.0.0",
+        "title": "shift-claims-ingester-api",
+        "contact": {
+            "email": "ankit.pandey2293@gmail.com"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "claims",
+            "description": "Internal API's for saving and retriving claims"
+        },
+        {
+            "name": "healthcheck",
+            "description": "Cloud ready healthcheck"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/platform/v1/claims": {
+            "post": {
+                "tags": [
+                    "claims"
+                ],
+                "summary": "Add a new Claim or set of Claims in batch",
+                "description": "",
+                "operationId": "addClaim",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "claims to be submitted",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/saveclaims"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid Schema Error"
+                    }
+                }
+            }
+        },
+        "/platform/v1/claims/{id}": {
+            "get": {
+                "tags": [
+                    "claims"
+                ],
+                "summary": "Finds Claim by id",
+                "description": "Retrieve Claim by id",
+                "operationId": "getClaim",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Status values that need to be considered for filter",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/claim"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/ping": {
+            "get": {
+                "tags": [
+                    "healthcheck"
+                ],
+                "summary": "Ping check to verify health",
+                "description": "Checks multiple health KPIs in the service",
+                "operationId": "ping",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessApiResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Health API not responsive"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "saveclaims": {
+            "type": "object",
+            "properties": {
+                "request_id": {
+                    "type": "string"
+                },
+                "claims": {
+                    "$ref": "#/definitions/claims"
+                }
+            }
+        },
+        "claims": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/claim"
+            }
+        },
+        "claim": {
+            "type": "object",
+            "properties": {
+                "uniqueID": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "claimName": {
+                    "type": "string"
+                },
+                "verified": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SuccessApiResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

@@ -39,4 +39,8 @@ exports.FormattedResponse = {
     code: 400,
     message: "The claim has already been submitted."
   },
+  ServiceNotAvailable: {
+    code: 500,
+    message: "The service isnt available at present. Kindly try again later"
+  },
 }
