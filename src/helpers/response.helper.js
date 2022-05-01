@@ -4,7 +4,7 @@
  * @param   {string} message
  * @param   {number} statusCode
  */
-exports.success = (data, message = '', statusCode = 200) => {
+exports.success = (data, message, statusCode = 200) => {
   return {
     message,
     error: false,
@@ -20,7 +20,7 @@ exports.success = (data, message = '', statusCode = 200) => {
  * @param   {object | string} err
  * @param   {number} status
  */
-exports.error = (message, status = 500) => {
+exports.error = (message, status) => {
 
   return {
     message,

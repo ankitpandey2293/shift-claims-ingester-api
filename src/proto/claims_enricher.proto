@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+message Claim {
+    int64 uniqueID = 2;
+    string claimName = 3;
+    bool verified = 4;
+}
+
+service ClaimsEnricherService {
+    rpc enrichClaim (ClaimQuery) returns (Claim) {}
+}
+
+message ClaimQuery {
+    int64 orgID = 1;
+    int64 uniqueID = 2;
+}

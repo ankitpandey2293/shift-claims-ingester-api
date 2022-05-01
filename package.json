@@ -3,9 +3,13 @@
     "version": "v1.0.0",
     "scripts": {
         "start": "node --trace-deprecation ./bin/server",
-        "debug": "node --inspect-brk ./bin/server"
+        "debug": "node --inspect-brk ./bin/server",
+        "test": "jest",
+        "coverage": "jest --noStackTrace --detectOpenHandles --coverage"
     },
     "dependencies": {
+        "@grpc/grpc-js": "^1.6.7",
+        "@grpc/proto-loader": "^0.6.9",
         "compression": "^1.7.4",
         "cookie-parser": "~1.4.4",
         "cors": "^2.8.5",
@@ -19,6 +23,7 @@
         "jsonwebtoken": "^8.5.1",
         "lodash": "^4.17.21",
         "morgan": "~1.9.1",
+        "redis": "^4.0.6",
         "winston": "^3.6.0"
     },
     "devDependencies": {
@@ -28,6 +33,8 @@
         "@babel/preset-env": "^7.16.11",
         "@types/express": "^4.17.13",
         "@types/node": "^17.0.23",
+        "jest": "^28.0.3",
+        "redis-mock": "^0.56.3",
         "ts-node": "^10.7.0",
         "typescript": "^4.6.3"
     }
