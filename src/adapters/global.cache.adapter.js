@@ -1,4 +1,8 @@
 const { createClient } = require('redis');
+let redisToggle = false;
+/** Healthcheck */
+exports.isRedisReady = redisToggle;
+
 
 /** TODO : This will be shifted to ENV or Configuration Management */
 const ConnectionConfig = {
@@ -16,7 +20,10 @@ class GlobalCache {
         this.state = state;
         this.retryAttempts = 0;
         this.client = createClient({ url: ConnectionConfig.URI, socket: ConnectionConfig.socket })
+
         this.client.on('error', this.errorHandler);
+        this.client.on('connect', () => { redisToggle = true });
+        this.client.on('ready', () => { redisToggle = true });
         this.init();
     }
     /** 
@@ -41,6 +48,7 @@ class GlobalCache {
      * */
     errorHandler = async (err) => {
         const me = this;
+        redisToggle = false
         this.retryAttempts++;
         if (this.retryAttempts <= 10) {
             console.log(`Redis RetryAttempt ${this.retryAttempts}`)

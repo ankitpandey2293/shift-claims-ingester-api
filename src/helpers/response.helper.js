@@ -43,4 +43,8 @@ exports.FormattedResponse = {
     code: 500,
     message: "The service isnt available at present. Kindly try again later"
   },
+  IdempotentDrop: {
+    code: 403,
+    message: "The claim submission request is dropped due to being an idempotent request."
+  },
 }

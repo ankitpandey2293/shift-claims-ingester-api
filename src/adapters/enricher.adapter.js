@@ -1,5 +1,6 @@
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
+const { FormattedResponse } = require("../helpers/response.helper");
 
 /** TODO : This will be shifted to ENV or Configuration Management */
 const ConnectionConfig = {
@@ -47,8 +48,29 @@ class EnricherAdapter {
     enrichClaim = async (orgID, uniqueID) => {
         return new Promise((resolve, reject) => {
             this.client.enrichClaim({ orgID, uniqueID }, (error, claim) => {
-                if (error) reject(new Error('Enrichment Not Available'))
+                if (error && error.code == 3) {
+                    reject(FormattedResponse.ClaimNotFound)
+                }
+                if (error) {
+                    reject(new Error('Enrichment Not Available'))
+                }
                 resolve(claim)
+            })
+        })
+    }
+
+    /**
+     * @desc Enrich a unique claim via a gRPC service to Global Cache Store
+     * @param {orgID} organizationID
+     * @param {claim} claim sent by user for persisting new claim 
+     * */
+    saveClaim = async (orgID, claim) => {
+        return new Promise((resolve, reject) => {
+            this.client.saveClaim({ orgID, ...claim }, (error, _result) => {
+                if (error) {
+                    reject({ uniqueID: claim.uniqueID })
+                }
+                resolve({ uniqueID: claim.uniqueID })
             })
         })
     }

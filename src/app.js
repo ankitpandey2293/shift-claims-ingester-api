@@ -13,7 +13,7 @@ app.use(helmet());
 app.use(morgan(':method :url :status :res[content-length] :response-time ms'));
 app.use(express.json());
 app.use(compression());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 /** Routers for healthCheck & platform */
 app.use('/ping', healthCheckRouter);
