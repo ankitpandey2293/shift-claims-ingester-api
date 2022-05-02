@@ -47,6 +47,11 @@ Expected Output :
 > node --trace-deprecation ./bin/server
 ```
 
+## Swagger Documentation
+
+http://localhost:3000/documentation
+Path : swagger/swagger.json
+
 ## Debugging the application
 npm run debug
 
