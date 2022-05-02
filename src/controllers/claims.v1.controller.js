@@ -1,15 +1,16 @@
 const { ResponseHelper, ResponseHelper: { FormattedResponse } } = require('../helpers');
-const { GlobalCache, EnricherAdapter } = require('../adapters')
+const { GlobalCache, EnricherAdapter, QueuePublisher } = require('../adapters')
 const generateChecksum = require('object-hash');
 
 
 class ClaimsControllerV1 {
     constructor({ state = {}, config = {} }) {
         this.config = config;
-        this.config.maxBatchConcurrency = 50;
+        this.config.maxBatchConcurrency = 2;
         this.state = state;
         this.globalCache = new GlobalCache({ state, config })
         this.enricherAdapter = new EnricherAdapter({ state, config })
+        this.queuePublisher = new QueuePublisher();
     }
     /** 
      * @desc  Get claim
@@ -74,7 +75,11 @@ class ClaimsControllerV1 {
                 await Promise.allSettled(claimsPromises)
 
                 /** Respond with success and failed events */
-                return res.send(ResponseHelper.success({ duplicate, inserted }, 'OK', 200));
+                return res.status(200).send(ResponseHelper.success({ duplicate, inserted }, 'OK', 200));
+            } else {
+                /** Fire and Forget dispatcher */
+                this.queuePublisher.dispatchBatch(orgID, claims)
+                return res.status(200).send(ResponseHelper.success({ request_id }, 'Claims Submission Queued', 200));
             }
         } catch (exception) {
             /** Clear MUTEX in case of error of execution */

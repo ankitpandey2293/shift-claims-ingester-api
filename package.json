@@ -5,11 +5,12 @@
         "start": "node --trace-deprecation ./bin/server",
         "debug": "node --inspect-brk ./bin/server",
         "test": "jest",
-        "coverage": "jest --noStackTrace --detectOpenHandles --coverage"
+        "coverage": "jest --noStackTrace --coverage"
     },
     "dependencies": {
         "@grpc/grpc-js": "^1.6.7",
         "@grpc/proto-loader": "^0.6.9",
+        "amqplib": "^0.8.0",
         "compression": "^1.7.4",
         "cookie-parser": "~1.4.4",
         "cors": "^2.8.5",

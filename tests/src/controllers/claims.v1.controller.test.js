@@ -1,4 +1,15 @@
+const { QueuePublisher } = require('../../../src/adapters')
+jest.genMockFromModule('../../../src/adapters/queue.publisher.adapter');
+jest.mock('../../../src/adapters/queue.publisher.adapter');
 const { ClaimsControllerV1 } = require('../../../src/controllers');
+
+const mockQueuePublisher = {
+    dispatchEvent: jest.fn(),
+    setupConnection: jest.fn()
+};
+
+QueuePublisher.mockImplementation(() => mockQueuePublisher);
+
 
 const mockResponse = () => {
     const res = {};
@@ -14,7 +25,11 @@ const mockRequest = (data) => {
 
 
 describe("ClaimsControllerV1 Test Scenario", () => {
-    const claimsControllerV1 = new ClaimsControllerV1({})
+
+    let claimsControllerV1 = new ClaimsControllerV1({
+        state: {}, config: {}
+    })
+
     const res = {
         send: function () { },
         json: function (err) { },
@@ -23,12 +38,15 @@ describe("ClaimsControllerV1 Test Scenario", () => {
     const spy = jest.spyOn(claimsControllerV1.enricherAdapter, 'enrichClaim')
     spy.mockImplementation(async () => { return { "uniqueID": "1", "claimName": "Dummy", "verified": true } });
 
+
     afterAll(async () => {
-        await claimsControllerV1.globalCache.close()
-        await claimsControllerV1.enricherAdapter.close()
+        await Promise.allSettled([
+            claimsControllerV1.globalCache.close(),
+            claimsControllerV1.enricherAdapter.close()
+        ]);
     })
 
-    test('Instantiating Class', async () => {
+    test('Instantiating Class ClaimsControllerV1', async () => {
         expect(claimsControllerV1.config).toBeDefined()
         expect(claimsControllerV1.state).toBeDefined()
     })
