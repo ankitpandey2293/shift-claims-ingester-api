@@ -30,7 +30,7 @@ class QueuePublisher {
     }
 
     send = async (message) => {
-        await this.channel.sendToQueue(this.q, Buffer.from(JSON.stringify(message)))
+        this.channel.sendToQueue(this.q, Buffer.from(JSON.stringify(message)))
         console.log('QueuePublisher:send', message);
     }
 
