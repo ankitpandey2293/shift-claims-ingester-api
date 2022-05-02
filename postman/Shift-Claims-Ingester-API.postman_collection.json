@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "753babc1-18ae-4253-8a0c-4d08ba732f54",
+		"name": "Shift-Claims-Ingester-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "healthCheck",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/ping",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "21"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15-uFFjCr0SbbbFb/CsC0M2sF++swo\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 May 2022 20:47:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "getClaim",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:6000/platform/v1/claims/1",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"platform",
+						"v1",
+						"claims",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getClaim",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/platform/v1/claims/101",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"platform",
+								"v1",
+								"claims",
+								"101"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "118"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"76-RpkAJmfgiyE34TOCaADYjGEeD04\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 May 2022 20:47:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"OK\",\n    \"error\": false,\n    \"code\": 200,\n    \"data\": {\n        \"orgID\": \"1\",\n        \"uniqueID\": \"101\",\n        \"claimName\": \"Dummy101\",\n        \"verified\": true\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Save Claims",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"request_id\": \"batch14\",\n    \"claims\": [\n        {\n            \"uniqueID\": 500,\n            \"claimName\": \"Dummy500\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 301,\n            \"claimName\": \"Dummy301\",\n            \"verified\": true\n        },\n         {\n            \"uniqueID\": 400,\n            \"claimName\": \"Dummy400\",\n            \"verified\": true\n        },\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/platform/v1/claims",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"platform",
+						"v1",
+						"claims"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Save Claims",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"request_id\": \"batch14\",\n    \"claims\": [\n        {\n            \"uniqueID\": 1001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1003,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1004,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1005,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1006,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/platform/v1/claims",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"platform",
+								"v1",
+								"claims"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "86"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"56-5fdWB7sEbbFrhQFBIdZubmvZ6kE\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 May 2022 20:47:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"OK\",\n    \"error\": false,\n    \"code\": 200,\n    \"data\": {\n        \"duplicate\": [\n            101,\n            100\n        ],\n        \"inserted\": []\n    }\n}"
+				},
+				{
+					"name": "Save Claims -> RMQ Async",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"request_id\": \"batch105\",\n    \"claims\": [\n        {\n            \"uniqueID\": 3001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3003,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3004,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3005,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3006,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 3001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1001,\n            \"claimName\": \"Dummy100\",\n            \"verified\": true\n        },\n        {\n            \"uniqueID\": 1002,\n            \"claimName\": \"Dummy101\",\n            \"verified\": true\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/platform/v1/claims",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"platform",
+								"v1",
+								"claims"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Embedder-Policy",
+							"value": "require-corp"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "96"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"60-l6h1fg880y5aZvs+LXBiYLMmEY4\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 02 May 2022 05:33:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"message\": \"Claims Submission Queued\",\n    \"error\": false,\n    \"code\": 200,\n    \"data\": {\n        \"request_id\": \"batch105\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
